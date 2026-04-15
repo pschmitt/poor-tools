@@ -1,4 +1,4 @@
-FROM python:3.14.1-slim
+FROM python:3.15.0a8-slim
 
 # Build argument for version information
 ARG GIT_COMMIT_SHA=unknown
