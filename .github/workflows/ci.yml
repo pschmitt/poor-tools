@@ -11,7 +11,7 @@ jobs:
     name: Ruff (Python linting & formatting)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Lint with Ruff
       uses: astral-sh/ruff-action@v3
@@ -29,7 +29,7 @@ jobs:
     name: MyPy (Python type checking)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Set up Python
       uses: actions/setup-python@v6
@@ -51,7 +51,7 @@ jobs:
     name: ShellCheck (Shell script linting)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Lint shell scripts with ShellCheck
       uses: ludeeus/action-shellcheck@master
@@ -62,7 +62,7 @@ jobs:
     name: Hadolint (Dockerfile linting)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Lint Dockerfile with hadolint
       uses: hadolint/hadolint-action@v3.3.0
       with:
@@ -73,7 +73,7 @@ jobs:
     name: Pytest (Python testing)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Set up Python
       uses: actions/setup-python@v6
