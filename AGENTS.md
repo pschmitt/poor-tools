@@ -1,5 +1,19 @@
 # AGENTS.md
 
+## Project and validation
+
+`poor-tools` is a collection of portable shell utilities and a Python web
+installer that serves them. Keep generated installer output consistent with
+the source scripts and their `# <TEMPLATE>` markers.
+
+- Run `just check` for linting, formatting, and type checks; run `just test`
+  for the Python test suite.
+- CI uses the shared
+  [ci-workflows](https://github.com/pschmitt/ci-workflows) actions where
+  applicable.
+- Before changing CI, check for a reusable workflow or action there and
+  preserve the caller's existing behavior and check coverage.
+
 ## Project Guidelines for AI Agents
 
 This document provides guidelines for AI agents working on the poor-tools web installer project.
