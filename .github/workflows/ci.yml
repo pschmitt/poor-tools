@@ -54,7 +54,7 @@ jobs:
     - uses: actions/checkout@v7
 
     - name: Lint shell scripts with ShellCheck
-      uses: ludeeus/action-shellcheck@master
+      uses: pschmitt/ci-workflows/.github/actions/shellcheck@main
       with:
         check_together: 'yes'
 
