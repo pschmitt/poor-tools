@@ -14,7 +14,6 @@
     inputs@{
       self,
       flake-parts,
-      nixpkgs,
       pre-commit-hooks,
       ...
     }:
@@ -32,7 +31,6 @@
           {
             config,
             lib,
-            pkgs,
             ...
           }:
           let
@@ -116,10 +114,7 @@
           cleanSrc = pkgs.lib.cleanSourceWith {
             src = ./.;
             filter =
-              path: type:
-              let
-                baseName = builtins.baseNameOf path;
-              in
+              path: _type:
               # Include everything except build artifacts and .git
               !(pkgs.lib.hasInfix "result" path)
               && !(pkgs.lib.hasInfix ".git" path)
@@ -131,20 +126,8 @@
           };
 
           srcInfo = self.sourceInfo or { };
-          gitRev =
-            if srcInfo ? rev then
-              srcInfo.rev
-            else if srcInfo ? dirtyRev then
-              srcInfo.dirtyRev
-            else
-              "unknown";
-          gitShortRev =
-            if srcInfo ? shortRev then
-              srcInfo.shortRev
-            else if srcInfo ? dirtyShortRev then
-              srcInfo.dirtyShortRev
-            else
-              builtins.substring 0 7 gitRev;
+          gitRev = srcInfo.rev or (srcInfo.dirtyRev or "unknown");
+          gitShortRev = srcInfo.shortRev or (srcInfo.dirtyShortRev or (builtins.substring 0 7 gitRev));
 
           poor-installer-web = pkgs.python313Packages.buildPythonPackage {
             pname = "poor-installer-web";
@@ -306,8 +289,7 @@
         {
           packages = {
             default = poor-installer-web;
-            poor-installer-web = poor-installer-web;
-            poor-tools = poor-tools;
+            inherit poor-installer-web poor-tools;
             docker = dockerImage;
           };
 
