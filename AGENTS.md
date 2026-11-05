@@ -292,6 +292,10 @@ This document provides guidelines for AI agents working on the poor-tools web in
 ### Nix Integration
 
 - **Flake**: Uses flake-parts for clean, modular structure
+- Keep `packages.default` canonical and preserve the named `poor-installer-web`,
+  `poor-tools`, and `docker` outputs; do not add `defaultPackage` aliases.
+- Export the NixOS integration through `nixosModules.default` in `nix/module.nix`.
+- Run Nix evaluation and builds on an `rworker`, never on the local host.
 - **Dev shell**: Include all development dependencies with pre-commit hooks
 - **NixOS module**: Provide systemd service configuration with security hardening
 - **Package**: Self-contained package with Python dependencies
